@@ -85,3 +85,22 @@ aggsav=M_C;
 n=n+1;
 
 end
+
+Eincome=a+1;
+Uincome=a+0.5;
+income=[Eincome Uincome].*Mu(:)';
+
+sort=sort(income);
+percentile=income/sum(income(:));
+
+population=Mu(:)';
+population=population(sort);
+
+
+for i = 2:length(income)
+     percentile(i) = percentile(i)+percentile(i-1);
+     population(i) = population(i)+population(i-1);
+end
+
+plot(population, percentile);
+title('lorenz curve')
